@@ -1,0 +1,5 @@
+<!--index.wxml-->
+<navigation-bar title="微信吗？" back="{{true}}" color="black" background="#FFF"></navigation-bar>
+  <view class="title">hello {{wording}}!</view>
+  <image class="pic" src="../../img/oo1.png" mode="widthFix"></image>
+<button bindtap="onClick">点击</button>

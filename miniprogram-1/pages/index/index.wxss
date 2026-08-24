@@ -1,0 +1,11 @@
+/**index.wxss**/
+page {
+  text-align: center;
+}
+.title {
+   color: rgb(81, 0, 255);
+}
+.pic {
+  display: block;
+  margin: 0 auto;  
+}
