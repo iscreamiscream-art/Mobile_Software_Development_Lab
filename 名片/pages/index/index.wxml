@@ -1,0 +1,50 @@
+<navigation-bar color="black" background="#FFF"></navigation-bar>
+
+<!-- 头图 -->
+<image class="pic" src="../../img/zsc.jpg" mode="widthFix"></image>
+<scroll-view scroll-y style="height: 60vh">
+<!-- 基本信息块 -->
+<view class="block block-blue">
+  <view class="block-title">基本信息</view>
+  <view class="info-line">姓名：张世冲</view>
+  <view class="info-line">性别：男</view>
+  <view class="info-line">学号：24020007158</view>
+</view>
+
+<!-- 个人简介块 -->
+<view class="block">
+  <view class="block-title">个人简介</view>
+  <scroll-view scroll-y style="height: 20vh">
+    <view class="body">
+就读于中国海洋大学网络安全专业，始终秉持严谨务实的学习态度，深耕网络安全、计算机网络、信息防护等专业领域。在校期间系统学习网络攻防、数据安全、系统运维、密码学基础等核心课程，扎实掌握计算机底层原理与网络安全防护技术。
+    </view>
+    <view class="body">
+热爱信息技术与网络安全领域，热衷于探索网络漏洞挖掘、网络安全防护、数据加密防护等相关技术，注重理论与实践结合，积极参与课程实验、编程实践与科创活动，不断打磨代码能力与网络安全实操能力。
+    </view>
+    <view class="body">
+性格踏实沉稳、乐于钻研，具备良好的逻辑思维与问题排查能力，善于在学习中总结复盘、持续精进。未来将持续深耕网络安全领域，精进专业技能，致力于成为具备专业素养与实战能力的网络安全技术人才。
+    </view>
+  </scroll-view>
+</view>
+
+<!-- 兴趣特长块-->
+<view class="block">
+  <view class="block-title">兴趣特长</view>
+  <view class="table-wrap">
+    <view class="table-row">
+      <view class="table-cell">网络技术研究</view>
+      <view class="table-cell">代码编程</view>
+    </view>
+    <view class="table-row">
+      <view class="table-cell">网络安全攻防实践</view>
+      <view class="table-cell">信息技术学习</view>
+    </view>
+  </view>
+</view>
+
+<!-- 座右铭块 -->
+<view class="block block-blue">
+  <view class="block-title">座右铭</view>
+  <view class="motto">以技立身，以严治学，深耕技术，笃行致远</view>
+</view>
+</scroll-view>
