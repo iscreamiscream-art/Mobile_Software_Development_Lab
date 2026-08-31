@@ -14,6 +14,10 @@
       <view class="hero-meta">
         <text class="hero-source">海大新闻网</text>
         <text class="hero-date">{{article.add_date}}</text>
+        <text class="hero-views">
+          <text class="icon-view"></text>
+          {{viewCount}} 浏览
+        </text>
       </view>
     </view>
 
@@ -26,17 +30,64 @@
     <view class="content">
       <text>{{article.content}}</text>
     </view>
+
+    <!-- 评论区 -->
+    <view class="comment-section">
+      <view class="comment-header">
+        <text class="comment-title">评论</text>
+        <text class="comment-count" wx:if="{{commentCount > 0}}">{{commentCount}}</text>
+      </view>
+
+      <!-- 发表评论（仅微信登录可评论） -->
+      <view class="comment-editor {{userType !== 'wx' ? 'comment-editor-disabled' : ''}}">
+        <input class="comment-input" value="{{commentInput}}"
+               placeholder="{{userType === 'wx' ? '说点什么…' : '登录后即可评论'}}"
+               disabled="{{userType !== 'wx'}}"
+               bindinput="onCommentInput" confirm-type="send" bindconfirm="submitComment"
+               maxlength="200" />
+        <button class="comment-submit {{userType !== 'wx' ? 'comment-submit-disabled' : ''}}" bindtap="submitComment">发表</button>
+      </view>
+
+      <!-- 评论列表 -->
+      <view class="comment-list" wx:if="{{commentList.length > 0}}">
+        <view class="comment-item" wx:for="{{commentList}}" wx:key="id">
+          <image wx:if="{{item.src}}" class="comment-avatar" src="{{item.src}}" mode="aspectFill"></image>
+          <view wx:else class="comment-avatar comment-avatar-text">{{item.avatarText}}</view>
+          <view class="comment-body">
+            <view class="comment-head">
+              <text class="comment-nick">{{item.nickName}}</text>
+              <text class="comment-time">{{item.timeText}}</text>
+            </view>
+            <view class="comment-content-row">
+              <text class="comment-content">{{item.content}}</text>
+              <text class="comment-del" wx:if="{{item.canDelete}}"
+                    catchtap="deleteComment" data-id="{{item.id}}">删除</text>
+            </view>
+          </view>
+        </view>
+      </view>
+
+      <!-- 空评论 -->
+      <view class="comment-empty" wx:else>
+        <text>还没有评论，来抢沙发～</text>
+      </view>
+    </view>
   </block>
 
-  <!-- 底部收藏栏 -->
+  <!-- 底部操作栏（点赞 + 收藏） -->
   <view class="footer" wx:if="{{article}}">
+    <button class="fav-btn {{isLike ? 'is-liked' : ''}}" bindtap="toggleLike">
+      <text class="fav-icon">{{isLike ? '❤' : '♡'}}</text>
+      <text>{{isLike ? '已点赞' : '点赞'}}</text>
+      <text class="fav-num">{{likeCount}}</text>
+    </button>
     <button wx:if="{{isAdd}}" class="fav-btn is-faved" bindtap="cancelFavorites">
-      <text class="fav-icon">♥</text>
+      <text class="fav-icon">★</text>
       <text>已收藏</text>
     </button>
-    <button wx:else class="fav-btn" bindtap="addFavorites">
-      <text class="fav-icon">♡</text>
-      <text>收藏本文</text>
+    <button wx:else class="fav-btn {{userType !== 'wx' ? 'fav-disabled' : ''}}" bindtap="addFavorites">
+      <text class="fav-icon">☆</text>
+      <text>{{userType !== 'wx' ? '登录后可收藏' : '收藏本文'}}</text>
     </button>
   </view>
 

@@ -52,6 +52,20 @@ page {
 .hero-date {
   opacity: 0.85;
 }
+.hero-views {
+  margin-left: 20rpx;
+  opacity: 0.85;
+  display: flex;
+  align-items: center;
+}
+/* 浏览图标（矢量眼睛，内联 SVG，白色描边） */
+.hero-views .icon-view {
+  display: inline-block;
+  width: 28rpx;
+  height: 20rpx;
+  margin-right: 6rpx;
+  background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23ffffff' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z'/%3E%3Ccircle cx='12' cy='12' r='3'/%3E%3C/svg%3E") no-repeat center / contain;
+}
 
 /* ========== 封面图卡片（上移覆盖横幅，形成层叠效果） ========== */
 .poster {
@@ -85,6 +99,138 @@ page {
   word-break: break-all;
 }
 
+/* ========== 评论区 ========== */
+.comment-section {
+  margin: 32rpx 24rpx 0;
+  background: #ffffff;
+  border-radius: 24rpx;
+  padding: 36rpx 32rpx 24rpx;
+  box-shadow: 0 4rpx 16rpx rgba(0, 0, 0, 0.04);
+}
+.comment-header {
+  display: flex;
+  align-items: center;
+  margin-bottom: 28rpx;
+}
+.comment-title {
+  font-size: 34rpx;
+  font-weight: 700;
+  color: #1f2530;
+}
+.comment-count {
+  margin-left: 14rpx;
+  font-size: 24rpx;
+  color: #1e6fff;
+  background: #eaf2ff;
+  padding: 4rpx 16rpx;
+  border-radius: 20rpx;
+}
+.comment-editor {
+  display: flex;
+  align-items: center;
+  background: #f4f6f9;
+  border-radius: 48rpx;
+  padding: 8rpx 8rpx 8rpx 28rpx;
+  margin-bottom: 8rpx;
+}
+.comment-input {
+  flex: 1;
+  height: 68rpx;
+  font-size: 28rpx;
+  color: #333a45;
+}
+.comment-submit {
+  flex-shrink: 0;
+  margin: 0;
+  height: 68rpx;
+  line-height: 68rpx;
+  padding: 0 34rpx;
+  border-radius: 34rpx;
+  background: linear-gradient(135deg, #1e6fff 0%, #4f9dff 100%);
+  color: #ffffff;
+  font-size: 28rpx;
+}
+.comment-submit::after {
+  border: none;
+}
+/* 未登录 / 游客不可评论：输入区灰显 */
+.comment-editor-disabled {
+  background: #f0f2f5;
+}
+.comment-editor-disabled .comment-input {
+  color: #9aa3b0;
+}
+.comment-submit-disabled {
+  background: #cdd4de;
+  box-shadow: none;
+}
+.comment-item {
+  display: flex;
+  padding: 26rpx 0;
+  border-top: 1rpx solid #f0f2f5;
+}
+.comment-avatar {
+  width: 72rpx;
+  height: 72rpx;
+  border-radius: 50%;
+  flex-shrink: 0;
+  background: #eef2f7;
+}
+.comment-avatar-text {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #ffffff;
+  font-size: 32rpx;
+  font-weight: 600;
+  background: linear-gradient(135deg, #1e6fff 0%, #4f9dff 100%);
+}
+.comment-body {
+  flex: 1;
+  margin-left: 20rpx;
+  min-width: 0;
+}
+.comment-head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.comment-nick {
+  font-size: 28rpx;
+  font-weight: 600;
+  color: #1f2530;
+}
+.comment-time {
+  font-size: 22rpx;
+  color: #9aa3b0;
+}
+.comment-content-row {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  margin-top: 10rpx;
+}
+.comment-content {
+  flex: 1;
+  font-size: 28rpx;
+  line-height: 1.6;
+  color: #333a45;
+  word-break: break-all;
+}
+.comment-del {
+  flex-shrink: 0;
+  margin-left: 16rpx;
+  font-size: 22rpx;
+  color: #9aa3b0;
+  padding: 6rpx 12rpx;
+}
+.comment-empty {
+  padding: 48rpx 0 32rpx;
+  text-align: center;
+  color: #9aa3b0;
+  font-size: 26rpx;
+}
+
 /* ========== 底部收藏栏 ========== */
 .footer {
   position: fixed;
@@ -96,16 +242,18 @@ page {
   background: rgba(255, 255, 255, 0.96);
   box-shadow: 0 -6rpx 24rpx rgba(0, 0, 0, 0.06);
   z-index: 10;
+  display: flex;
+  gap: 20rpx;
 }
 .fav-btn {
-  width: 100%;
+  flex: 1;
   height: 92rpx;
   line-height: 92rpx;
   padding: 0;
   border-radius: 46rpx;
   background: linear-gradient(135deg, #1e6fff 0%, #4f9dff 100%);
   color: #ffffff;
-  font-size: 32rpx;
+  font-size: 30rpx;
   font-weight: 600;
   letter-spacing: 2rpx;
   box-shadow: 0 10rpx 24rpx rgba(30, 111, 255, 0.35);
@@ -114,8 +262,13 @@ page {
   border: none;
 }
 .fav-icon {
-  margin-right: 12rpx;
-  font-size: 38rpx;
+  margin-right: 10rpx;
+  font-size: 36rpx;
+}
+.fav-num {
+  margin-left: 10rpx;
+  font-size: 24rpx;
+  opacity: 0.85;
 }
 /* 已收藏状态：浅蓝底 + 蓝色描边 + 红心 */
 .fav-btn.is-faved {
@@ -125,5 +278,19 @@ page {
   box-shadow: none;
 }
 .fav-btn.is-faved .fav-icon {
+  color: #ffb400;
+}
+/* 已点赞状态：浅红底 + 红心 */
+.fav-btn.is-liked {
+  background: #ffecee;
   color: #ff5f6d;
+  border: 2rpx solid #ff5f6d;
+  box-shadow: none;
+}
+/* 游客禁用状态（不可收藏） */
+.fav-btn.fav-disabled {
+  background: #e8ecf2;
+  color: #9aa3b0;
+  border: none;
+  box-shadow: none;
 }

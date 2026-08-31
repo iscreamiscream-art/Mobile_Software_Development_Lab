@@ -1,18 +1,66 @@
-<!-- 登陆页面 -->
+<!-- pages/my/my.wxml -->
+<!-- 用户信息卡片 -->
 <view class="myLogin">
   <block wx:if="{{isLogin}}">
-    <image src="{{src}}"></image>
-    <text>{{nickName}}</text>
+    <!-- 微信账号：可一键采用头像昵称 -->
+    <button class="avatar-btn" open-type="chooseAvatar" bindchooseavatar="onChooseAvatar">
+      <image wx:if="{{src}}" class="avatar" src="{{src}}"></image>
+      <view wx:else class="avatar avatar-default">👤</view>
+      <view class="avatar-badge">✎</view>
+    </button>
+    <!-- type="nickname"：点击输入时键盘上方弹出微信昵称建议条，点一下即一键采用 -->
+    <input class="nickname-input" type="nickname" value="{{nickName}}" placeholder="点此采用微信昵称"
+      placeholder-class="nickname-placeholder" bindinput="onNickInput" bindblur="saveUserInfo" />
   </block>
-  <button wx:else bindtap="getUserInfo" >未登录，点此登录</button>
+  <block wx:else>
+    <view class="avatar avatar-default">👤</view>
+    <view class="nickname">未登录</view>
+    <button class="login-btn" bindtap="login">微信登录</button>
+  </block>
 </view>
-<!-- 收藏列表 -->
-<view class="myFavorite"> 
-  <text>我的收藏（{{number}}）</text>
-  <view class="news-list">
-    <view class="news-item" wx:for="{{newsList}}" wx:key="{{item.id}}">
-      <image src="{{item.poster}}"></image>
-      <text bindtap = 'goToDetail' data-id="{{item.id}}">{{item.title}}————{{item.add_date}}</text>
+
+<!-- 收藏 / 浏览历史 -->
+<view class="myFavorite">
+  <!-- 标签切换 -->
+  <view class="tab-bar">
+    <view class="tab-item {{activeTab === 'fav' ? 'active' : ''}}" data-tab="fav" bindtap="switchTab">
+      我的收藏（{{number}}）
+    </view>
+    <view class="tab-item {{activeTab === 'history' ? 'active' : ''}}" data-tab="history" bindtap="switchTab">
+      浏览历史（{{historyNumber}}）
     </view>
   </view>
+
+  <!-- 收藏列表 -->
+  <block wx:if="{{activeTab === 'fav'}}">
+    <view class="fav-empty" wx:if="{{!newsList.length}}">还没有收藏任何新闻</view>
+    <view class="fav-list" wx:else>
+      <view class="fav-item" wx:for="{{newsList}}" wx:key="id" bindtap="goToDetail" data-id="{{item.id}}">
+        <image class="fav-poster" src="{{item.poster}}"></image>
+        <view class="fav-info">
+          <view class="fav-text">{{item.title}}</view>
+          <text class="fav-date">{{item.add_date}}</text>
+        </view>
+      </view>
+    </view>
+  </block>
+
+  <!-- 浏览历史 -->
+  <block wx:else>
+    <view class="fav-empty" wx:if="{{!historyList.length}}">还没有浏览记录</view>
+    <view class="fav-list" wx:else>
+      <view class="fav-item" wx:for="{{historyList}}" wx:key="id" bindtap="goToDetail" data-id="{{item.id}}">
+        <image class="fav-poster" src="{{item.poster}}"></image>
+        <view class="fav-info">
+          <view class="fav-text">{{item.title}}</view>
+          <text class="fav-date">浏览于 {{item.viewTimeText}}</text>
+        </view>
+      </view>
+    </view>
+  </block>
+</view>
+
+<!-- 退出登录 -->
+<view class="logout-wrap" wx:if="{{isLogin}}">
+  <button class="logout-btn" bindtap="logout">退出登录</button>
 </view>

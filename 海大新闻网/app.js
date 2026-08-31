@@ -1,10 +1,14 @@
+// app.js
+var store = require('./utils/store.js')
+
 App({
 
   /**
    * 当小程序初始化完成时，会触发 onLaunch（全局只触发一次）
    */
   onLaunch: function () {
-    
+    // 初始化本地数据层：合并旧版点赞缓存并清理云模式遗留数据
+    store.initCloud()
   },
 
   /**

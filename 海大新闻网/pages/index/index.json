@@ -1,3 +1,6 @@
 {
-  
+  "usingComponents": {},
+  "enablePullDownRefresh": true,
+  "backgroundTextStyle": "dark",
+  "navigationBarTitleText": "海大新闻网"
 }

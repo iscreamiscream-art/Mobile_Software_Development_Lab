@@ -1,13 +1,90 @@
-<!-- 幻灯片：wx:for 需直接作用于 swiper-item -->
-<swiper indicator-dots="true" autoplay="true" interval="5000" duration="500">
-  <swiper-item wx:for="{{swiperImg}}" wx:key="src">
-    <image src="{{item.src}}"></image>
-  </swiper-item>
-</swiper>
-<!-- 新闻列表 -->
-<view class="news-list">
-  <view class="news-item" wx:for="{{newsList}}" wx:key="{{item.id}}" >
-    <image src="{{item.poster}}" ></image>
-    <text bindtap = 'goToDetail' data-id="{{item.id}}">{{item.title}}————{{item.add_date}}</text>
+<!-- pages/index/index.wxml -->
+<view class="home-page">
+
+  <!-- 顶部搜索栏 -->
+  <view class="search-bar">
+    <view class="search-box">
+      <text class="search-icon">🔍</text>
+      <input
+        class="search-input"
+        type="text"
+        placeholder="搜索新闻标题、内容、日期"
+        placeholder-class="search-placeholder"
+        confirm-type="search"
+        value="{{keyword}}"
+        bindinput="onSearchInput"
+        bindconfirm="onSearchConfirm" />
+      <text class="search-clear" wx:if="{{keyword}}" bindtap="clearSearch">✕</text>
+    </view>
   </view>
+
+  <!-- 顶部轮播 -->
+  <view class="banner-wrap" wx:if="{{!keyword}}">
+    <swiper
+      class="banner-swiper"
+      indicator-dots="{{swiperImg.length > 1}}"
+      autoplay="true"
+      interval="4000"
+      duration="600"
+      circular="true"
+      indicator-color="rgba(255,255,255,0.35)"
+      indicator-active-color="#ffffff">
+      <swiper-item wx:for="{{swiperImg}}" wx:key="id" bindtap="goToSwiper" data-id="{{item.id}}">
+        <view class="banner-item">
+          <image class="banner-img" src="{{item.src}}" mode="aspectFill"></image>
+          <view class="banner-mask"></view>
+          <view class="banner-title">{{item.title}}</view>
+        </view>
+      </swiper-item>
+    </swiper>
+  </view>
+
+  <!-- 区块标题 -->
+  <view class="section-title">
+    <view class="section-line"></view>
+    <text wx:if="{{keyword}}">搜索结果（{{newsList.length}}）</text>
+    <text wx:else>最新动态</text>
+  </view>
+
+  <!-- 空结果提示 -->
+  <view class="search-empty" wx:if="{{keyword && newsList.length === 0}}">
+    <text class="search-empty-icon">📭</text>
+    <text class="search-empty-text">未找到与“{{keyword}}”相关的新闻</text>
+  </view>
+
+  <!-- 新闻卡片列表（滚动渐入动画） -->
+  <view class="news-cards">
+    <view
+      class="news-card {{item.visible ? 'visible' : ''}}"
+      wx:for="{{newsList}}"
+      wx:key="id"
+      bindtap="goToDetail"
+      data-id="{{item.id}}">
+      <image class="news-poster" src="{{item.poster}}" mode="aspectFill"></image>
+      <view class="news-info">
+        <view class="news-title">{{item.title}}</view>
+        <view class="news-meta">
+          <text class="news-date">{{item.add_date}}</text>
+          <view class="news-actions">
+            <view class="news-views">
+              <view class="icon-view"></view>
+              <text>{{item.viewCount}}</text>
+            </view>
+            <view
+              class="like-btn {{item.liked ? 'liked' : ''}} {{userType === 'anon' ? 'like-disabled' : ''}}"
+              catchtap="toggleLike"
+              data-id="{{item.id}}">
+              <text class="like-icon">{{item.liked ? '❤' : '♡'}}</text>
+              <text class="like-count">{{item.likeCount}}</text>
+            </view>
+            <text class="news-arrow">›</text>
+          </view>
+        </view>
+      </view>
+    </view>
+  </view>
+
+  <!-- 回到顶部 -->
+  <view class="back-top {{showBackTop ? 'show' : ''}}" bindtap="scrollToTop">↑</view>
+
 </view>

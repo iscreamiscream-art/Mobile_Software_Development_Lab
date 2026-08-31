@@ -1,21 +1,190 @@
-/* pages/my/my.wxss *//* 登陆页面 */
-.myLogin{
-  height: 400rpx;
-  background-color: #328EEB;
+/* pages/my/my.wxss */
+page {
+  background-color: #f6f8fc;
+}
+
+/* ========== 用户信息卡片 ========== */
+.myLogin {
+  padding: 60rpx 0 70rpx;
+  background: linear-gradient(135deg, #1e6fff 0%, #4f9dff 100%);
+  border-radius: 0 0 48rpx 48rpx;
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: space-around;
 }
-.myLogin image{
-  height: 200rpx;
-  width:200rpx;
+.avatar {
+  width: 160rpx;
+  height: 160rpx;
   border-radius: 50%;
+  background: #ffffff;
+  border: 6rpx solid rgba(255, 255, 255, 0.4);
 }
-.myLogin text{
-  color: white;
+.avatar-default {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 80rpx;
+  background: rgba(255, 255, 255, 0.25);
 }
-/* 收藏列表 */
-.myFavorite{
+.nickname {
+  margin-top: 24rpx;
+  color: #ffffff;
+  font-size: 34rpx;
+  font-weight: 600;
+}
+.login-btn {
+  margin-top: 32rpx;
+  width: 300rpx;
+  height: 80rpx;
+  line-height: 80rpx;
+  padding: 0;
+  border-radius: 40rpx;
+  background: #ffffff;
+  color: #1e6fff;
+  font-size: 30rpx;
+  font-weight: 600;
+  box-shadow: 0 10rpx 24rpx rgba(0, 0, 0, 0.15);
+}
+.login-btn::after {
+  border: none;
+}
+/* 头像一键采用按钮（open-type="chooseAvatar"，点击弹出微信头像选择器） */
+.avatar-btn {
+  width: 160rpx;
+  height: 160rpx;
+  padding: 0;
+  border-radius: 50%;
+  background: transparent;
+  overflow: visible;
+  line-height: 1;
+  position: relative;
+}
+.avatar-btn::after {
+  border: none;
+}
+/* 头像右下角编辑角标 */
+.avatar-badge {
+  position: absolute;
+  right: -4rpx;
+  bottom: -4rpx;
+  width: 48rpx;
+  height: 48rpx;
+  border-radius: 50%;
+  background: #ffffff;
+  color: #1e6fff;
+  font-size: 26rpx;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 4rpx 12rpx rgba(0, 0, 0, 0.2);
+}
+/* 昵称一键采用输入框（type="nickname"，键盘上方弹微信昵称建议条） */
+.nickname-input {
+  margin-top: 24rpx;
+  width: 400rpx;
+  height: 68rpx;
+  line-height: 68rpx;
+  text-align: center;
+  background: rgba(255, 255, 255, 0.22);
+  border-radius: 34rpx;
+  color: #ffffff;
+  font-size: 32rpx;
+  font-weight: 600;
+}
+.nickname-placeholder {
+  color: rgba(255, 255, 255, 0.7);
+  font-weight: 400;
+}
+
+/* ========== 收藏 / 浏览历史 ========== */
+.myFavorite {
+  padding: 30rpx 24rpx;
+}
+/* 标签栏 */
+.tab-bar {
+  display: flex;
+  background: #eef1f6;
+  border-radius: 40rpx;
+  padding: 6rpx;
+  margin-bottom: 24rpx;
+}
+.tab-item {
+  flex: 1;
+  height: 68rpx;
+  line-height: 68rpx;
+  text-align: center;
+  font-size: 28rpx;
+  color: #7c8694;
+  border-radius: 34rpx;
+  transition: all 0.25s ease;
+}
+.tab-item.active {
+  background: #ffffff;
+  color: #1e6fff;
+  font-weight: 600;
+  box-shadow: 0 4rpx 14rpx rgba(31, 45, 61, 0.1);
+}
+.fav-empty {
+  padding: 120rpx 0;
+  text-align: center;
+  color: #9aa3b0;
+  font-size: 28rpx;
+}
+.fav-item {
+  display: flex;
+  align-items: center;
+  background: #ffffff;
+  border-radius: 24rpx;
   padding: 20rpx;
+  margin-bottom: 20rpx;
+  box-shadow: 0 6rpx 20rpx rgba(31, 45, 61, 0.06);
+}
+.fav-poster {
+  width: 160rpx;
+  height: 110rpx;
+  border-radius: 14rpx;
+  flex-shrink: 0;
+  background: #eef1f6;
+}
+.fav-info {
+  flex: 1;
+  margin-left: 20rpx;
+  display: flex;
+  flex-direction: column;
+}
+.fav-text {
+  font-size: 29rpx;
+  color: #2b3440;
+  line-height: 1.4;
+  font-weight: 600;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 2;
+}
+.fav-date {
+  margin-top: 12rpx;
+  font-size: 23rpx;
+  color: #9aa3b0;
+}
+
+/* ========== 退出登录 ========== */
+.logout-wrap {
+  padding: 20rpx 24rpx 40rpx;
+}
+.logout-btn {
+  height: 92rpx;
+  line-height: 92rpx;
+  padding: 0;
+  border-radius: 46rpx;
+  background: #ffffff;
+  color: #ff5f6d;
+  font-size: 30rpx;
+  font-weight: 600;
+  border: 2rpx solid #ffd6da;
+  box-shadow: 0 6rpx 18rpx rgba(255, 95, 109, 0.12);
+}
+.logout-btn::after {
+  border: none;
 }

@@ -26,6 +26,7 @@ function getNewsList() {
     obj.poster = news[i].poster;
     obj.add_date = news[i].add_date;
     obj.title = news[i].title;
+    obj.content = news[i].content;
     list.push(obj);
   }
   return list; //返回新闻列表
@@ -47,8 +48,15 @@ function getNewsDetail(newsID) {
   return msg; //返回查找结果
 }
 
+// 获取当前身份类型：wx=微信登录 / anon=未登录
+function getUserType() {
+  let session = wx.getStorageSync('wxSession')
+  return (session && session.code) ? 'wx' : 'anon'
+}
+
 // 对外暴露接口
 module.exports = {
   getNewsList: getNewsList,
-  getNewsDetail: getNewsDetail
+  getNewsDetail: getNewsDetail,
+  getUserType: getUserType
 }
