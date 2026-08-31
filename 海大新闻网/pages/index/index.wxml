@@ -1,0 +1,13 @@
+<!-- 幻灯片：wx:for 需直接作用于 swiper-item -->
+<swiper indicator-dots="true" autoplay="true" interval="5000" duration="500">
+  <swiper-item wx:for="{{swiperImg}}" wx:key="src">
+    <image src="{{item.src}}"></image>
+  </swiper-item>
+</swiper>
+<!-- 新闻列表 -->
+<view class="news-list">
+  <view class="news-item" wx:for="{{newsList}}" wx:key="{{item.id}}" >
+    <image src="{{item.poster}}" ></image>
+    <text bindtap = 'goToDetail' data-id="{{item.id}}">{{item.title}}————{{item.add_date}}</text>
+  </view>
+</view>

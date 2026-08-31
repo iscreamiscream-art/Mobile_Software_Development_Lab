@@ -1,0 +1,129 @@
+/* pages/detail/detail.wxss */
+page {
+  background-color: #f4f6f9;
+}
+
+.detail-page {
+  padding-bottom: 200rpx; /* 为底部固定收藏栏留白 */
+}
+
+/* ========== 空状态 ========== */
+.empty {
+  padding-top: 320rpx;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  color: #9aa3b0;
+}
+.empty-icon {
+  font-size: 100rpx;
+  margin-bottom: 28rpx;
+}
+.empty-text {
+  font-size: 28rpx;
+  letter-spacing: 2rpx;
+}
+
+/* ========== 顶部横幅 ========== */
+.hero {
+  padding: 60rpx 40rpx 56rpx;
+  background: linear-gradient(135deg, #1e6fff 0%, #4f9dff 100%);
+  border-radius: 0 0 48rpx 48rpx;
+  color: #ffffff;
+}
+.hero-title {
+  font-size: 44rpx;
+  font-weight: 700;
+  line-height: 1.4;
+  letter-spacing: 2rpx;
+}
+.hero-meta {
+  margin-top: 28rpx;
+  display: flex;
+  align-items: center;
+  font-size: 24rpx;
+}
+.hero-source {
+  background: rgba(255, 255, 255, 0.25);
+  padding: 6rpx 18rpx;
+  border-radius: 24rpx;
+  margin-right: 20rpx;
+}
+.hero-date {
+  opacity: 0.85;
+}
+
+/* ========== 封面图卡片（上移覆盖横幅，形成层叠效果） ========== */
+.poster {
+  margin: -36rpx 24rpx 0;
+  background: #ffffff;
+  border-radius: 24rpx;
+  padding: 14rpx;
+  box-shadow: 0 12rpx 32rpx rgba(30, 111, 255, 0.14);
+}
+.poster image {
+  width: 100%;
+  border-radius: 16rpx;
+  display: block;
+}
+
+/* ========== 正文卡片 ========== */
+.content {
+  margin: 32rpx 24rpx 0;
+  background: #ffffff;
+  border-radius: 24rpx;
+  padding: 40rpx 34rpx;
+  box-shadow: 0 4rpx 16rpx rgba(0, 0, 0, 0.04);
+}
+.content text {
+  font-size: 31rpx;
+  line-height: 1.9;
+  color: #333a45;
+  text-align: justify;
+  letter-spacing: 1rpx;
+  white-space: pre-wrap; /* 保留正文换行 */
+  word-break: break-all;
+}
+
+/* ========== 底部收藏栏 ========== */
+.footer {
+  position: fixed;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  padding: 20rpx 40rpx;
+  padding-bottom: calc(20rpx + env(safe-area-inset-bottom));
+  background: rgba(255, 255, 255, 0.96);
+  box-shadow: 0 -6rpx 24rpx rgba(0, 0, 0, 0.06);
+  z-index: 10;
+}
+.fav-btn {
+  width: 100%;
+  height: 92rpx;
+  line-height: 92rpx;
+  padding: 0;
+  border-radius: 46rpx;
+  background: linear-gradient(135deg, #1e6fff 0%, #4f9dff 100%);
+  color: #ffffff;
+  font-size: 32rpx;
+  font-weight: 600;
+  letter-spacing: 2rpx;
+  box-shadow: 0 10rpx 24rpx rgba(30, 111, 255, 0.35);
+}
+.fav-btn::after {
+  border: none;
+}
+.fav-icon {
+  margin-right: 12rpx;
+  font-size: 38rpx;
+}
+/* 已收藏状态：浅蓝底 + 蓝色描边 + 红心 */
+.fav-btn.is-faved {
+  background: #eaf2ff;
+  color: #1e6fff;
+  border: 2rpx solid #1e6fff;
+  box-shadow: none;
+}
+.fav-btn.is-faved .fav-icon {
+  color: #ff5f6d;
+}

@@ -1,0 +1,43 @@
+<!-- pages/detail/detail.wxml -->
+<view class="detail-page">
+
+  <!-- 空状态：未加载到新闻时显示 -->
+  <view class="empty" wx:if="{{!article}}">
+    <text class="empty-icon">📰</text>
+    <text class="empty-text">暂无新闻内容</text>
+  </view>
+
+  <block wx:else>
+    <!-- 顶部横幅：标题 + 元信息 -->
+    <view class="hero">
+      <view class="hero-title">{{article.title}}</view>
+      <view class="hero-meta">
+        <text class="hero-source">海大新闻网</text>
+        <text class="hero-date">{{article.add_date}}</text>
+      </view>
+    </view>
+
+    <!-- 封面图 -->
+    <view class="poster" wx:if="{{article.poster}}">
+      <image src="{{article.poster}}" mode="widthFix"></image>
+    </view>
+
+    <!-- 正文 -->
+    <view class="content">
+      <text>{{article.content}}</text>
+    </view>
+  </block>
+
+  <!-- 底部收藏栏 -->
+  <view class="footer" wx:if="{{article}}">
+    <button wx:if="{{isAdd}}" class="fav-btn is-faved" bindtap="cancelFavorites">
+      <text class="fav-icon">♥</text>
+      <text>已收藏</text>
+    </button>
+    <button wx:else class="fav-btn" bindtap="addFavorites">
+      <text class="fav-icon">♡</text>
+      <text>收藏本文</text>
+    </button>
+  </view>
+
+</view>
