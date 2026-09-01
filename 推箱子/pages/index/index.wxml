@@ -1,0 +1,12 @@
+<view class='container'>
+  <view class='title'>游戏选关</view>
+  <view class='levelBox'>
+    <view class='box' wx:for='{{levels}}' wx:key='index'
+          hover-class='boxHover'
+          bindtap='chooseLevel' data-level='{{index}}'>
+      <view class='badge' wx:if='{{cleared[index]}}'>已通关</view>
+      <image class='boxImg' src='/images/{{item}}'></image>
+      <text>第{{index+1}}关</text>
+    </view>
+  </view>
+</view>

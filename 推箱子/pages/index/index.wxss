@@ -1,0 +1,60 @@
+/* 首页容器：内容超出屏幕时可上下滑动 */
+.container {
+  height: auto;
+  min-height: 100vh;
+  overflow-y: auto;
+  justify-content: flex-start;
+  padding: 40rpx 30rpx;
+  box-sizing: border-box;
+}
+
+/* 关卡方块：两列网格 */
+.levelBox {
+  width: 100%;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-evenly;
+}
+
+.box {
+  position: relative;
+  width: 330rpx;
+  margin: 24rpx 10rpx;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background: #ffffff;
+  border: 3rpx solid #f0d5d0;
+  border-radius: 28rpx;
+  padding: 24rpx 0 18rpx;
+  box-shadow: 0 6rpx 18rpx rgba(217, 106, 95, 0.18);
+  color: #d96a5f;
+  font-size: 30rpx;
+}
+
+/* 已通关角标：绿色底 + 黄色字 */
+.badge {
+  position: absolute;
+  top: 0;
+  right: 0;
+  z-index: 2;
+  background: #2e8b57; /* 绿色 */
+  color: #ffd700;      /* 黄色字体 */
+  font-size: 24rpx;
+  font-weight: bold;
+  padding: 10rpx 20rpx;
+  border-radius: 0 28rpx 0 24rpx;
+}
+
+/* 点击反馈 */
+.boxHover {
+  transform: scale(0.95);
+  background: #fff5f3;
+}
+
+.boxImg {
+  width: 270rpx;
+  height: 270rpx;
+  border-radius: 16rpx;
+  margin-bottom: 12rpx;
+}

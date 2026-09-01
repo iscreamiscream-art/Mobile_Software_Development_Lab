@@ -1,0 +1,30 @@
+<!--pages/game/game.wxml-->
+<view class='container'>
+  <!--关卡提示-->
+  <view class='title'>第{{level}}关</view>
+  <!--步数限制（左上角，跑道形）-->
+  <view class='stepsBadge'>
+    <text>步数</text>
+    <text class='stepsNum'>{{steps}}</text>
+  </view>
+  <!--游戏画布-->
+  <canvas canvas-id="myCanvas"></canvas>
+  <!--方向键 + 技能-->
+  <view class='control'>
+    <view class='btnBox'>
+      <button type='warn' bindtap='up'>↑</button>
+      <view>
+        <button type='warn' bindtap='left'>←</button>
+        <button type='warn' bindtap='down'>↓</button>
+        <button type='warn' bindtap='right'>→</button>
+      </view>
+    </view>
+    <button class='skillBtn {{charging ? "skillCharging" : ""}} {{skillUsed ? "skillUsed" : ""}}' disabled='{{skillUsed}}' type='warn' bindtap='useSkill'>{{skillUsed ? '已使用' : (charging ? '蓄力中' : '技能')}}</button>
+  </view>
+  <!--上一关 / 重新开始 / 下一关-->
+  <view class='btnRow'>
+    <button class='navBtn' type='warn' bindtap='prevLevel'>上一关</button>
+    <button type='warn' bindtap='restartGame'>重新开始</button>
+    <button class='navBtn' type='warn' bindtap='nextLevel'>下一关</button>
+  </view>
+</view>

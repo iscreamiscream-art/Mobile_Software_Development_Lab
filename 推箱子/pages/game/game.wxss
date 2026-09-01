@@ -1,0 +1,91 @@
+/* pages/game/game.wxss */
+canvas {
+  border: 2rpx solid #f0d5d0;
+  border-radius: 24rpx;
+  background: #ffffff;
+  width: 320px;
+  height: 320px;
+}
+.btnBox { display: flex; flex-direction: column; align-items: center; }
+.btnBox view { display: flex; flex-direction: row; }
+
+/* 柔化：去掉按钮默认方角边框，改为圆角 */
+button { margin: 10rpx; border-radius: 30rpx; }
+button::after { border: none; }
+
+.btnBox button {
+  width: 90rpx;
+  height: 90rpx;
+  padding: 0;
+  line-height: 90rpx;
+  font-size: 40rpx;
+  background: #e64340;
+  color: #ffffff;
+  border-radius: 30rpx;
+}
+
+/* 步数限制：左上角，跑道形（去掉图标，直接"步数+数字"） */
+.stepsBadge {
+  position: absolute;
+  top: 16rpx;
+  left: 16rpx;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  padding: 8rpx 30rpx;
+  border-radius: 999rpx;
+  background: #fff5f3;
+  border: 3rpx solid #e98d83;
+  color: #d96a5f;
+  font-size: 26rpx;
+  box-shadow: 0 4rpx 12rpx rgba(217, 106, 95, 0.25);
+  z-index: 10;
+}
+.stepsNum {
+  font-size: 36rpx;
+  font-weight: bold;
+  margin-left: 10rpx;
+  color: #d14c40;
+}
+
+/* 方向键 + 技能 控制区 */
+.control { display: flex; flex-direction: row; align-items: center; }
+.skillBtn {
+  width: 130rpx;
+  height: 130rpx;
+  border-radius: 50%;
+  font-size: 28rpx;
+  margin-left: 30rpx;
+  padding: 0;
+  line-height: 130rpx;
+  background: #ffd700;
+  color: #7a5a00;
+}
+.skillCharging {
+  background: #8b4513 !important; /* 蓄力中：棕色 */
+  color: #ffffff !important;
+  border: 4rpx solid #6b3410;
+}
+/* 已使用：黑色 + 禁用（一局一次） */
+.skillUsed {
+  background: #333333 !important;
+  color: #ffffff !important;
+  border: none;
+}
+
+/* 上一关 / 重新开始 / 下一关 */
+.btnRow { display: flex; flex-direction: row; align-items: center; }
+.btnRow button {
+  width: 160rpx;
+  border-radius: 44rpx;
+  background: #f08080;
+  color: #ffffff;
+  font-size: 30rpx;
+  padding: 0;
+  line-height: 88rpx;
+}
+/* 上一关 / 下一关：黄色（重新开始保持浅红） */
+.btnRow .navBtn {
+  background: #ffd700;
+  color: #7a5a00;
+}
