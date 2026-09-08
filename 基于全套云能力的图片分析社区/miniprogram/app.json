@@ -1,0 +1,34 @@
+{
+  "pages": [
+    "pages/index/index",
+    "pages/mine/mine",
+    "pages/publish/publish",
+    "pages/homepage/homepage",
+    "pages/detail/detail",
+    "pages/mycollect/mycollect"
+  ],
+  "window": {
+    "backgroundColor": "#f2f3f5",
+    "backgroundTextStyle": "dark",
+    "navigationBarBackgroundColor": "#1296db",
+    "navigationBarTitleText": "图片分享社区",
+    "navigationBarTextStyle": "white"
+  },
+  "tabBar": {
+    "color": "#8a8a8a",
+    "selectedColor": "#1296db",
+    "backgroundColor": "#ffffff",
+    "borderStyle": "black",
+    "list": [
+      {
+        "pagePath": "pages/index/index",
+        "text": "社区"
+      },
+      {
+        "pagePath": "pages/mine/mine",
+        "text": "个人主页"
+      }
+    ]
+  },
+  "sitemapLocation": "sitemap.json"
+}

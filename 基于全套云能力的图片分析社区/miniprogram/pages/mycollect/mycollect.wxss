@@ -1,0 +1,50 @@
+.page {
+  padding-bottom: 60rpx;
+}
+
+.toolbar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 16rpx 24rpx;
+  background: #fff;
+  margin: 0 0 8rpx;
+}
+.toolbar-count {
+  font-size: 24rpx;
+  color: #999;
+}
+.clear-btn {
+  margin: 0;
+  font-size: 24rpx;
+  color: #e64340;
+  background: rgba(230, 67, 64, 0.1);
+  border-radius: 999rpx;
+}
+.clear-btn::after {
+  border: none;
+}
+
+.card-avatar {
+  width: 76rpx;
+  height: 76rpx;
+  border-radius: 50%;
+  background: #e5e6eb;
+}
+.card-avatar-txt {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #1296db;
+  font-size: 32rpx;
+  font-weight: 600;
+}
+.card-user {
+  flex: 1;
+  min-width: 0;
+  margin-left: 18rpx;
+}
+.card-nickname {
+  font-size: 30rpx;
+  font-weight: 600;
+}

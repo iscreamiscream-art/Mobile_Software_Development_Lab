@@ -1,0 +1,151 @@
+<view class="container">
+  <!-- 顶部资料卡 -->
+  <view class="profile {{profile && profile.bgUrl ? 'has-bg' : ''}}">
+    <!-- 背景图(可上传) -->
+    <image wx:if="{{profile && profile.bgUrl}}" class="profile-bg" src="{{profile.bgUrl}}" mode="aspectFill"></image>
+    <view wx:if="{{profile && profile.bgUrl}}" class="profile-bg-mask"></view>
+
+    <!-- 右上角：换背景 -->
+    <view wx:if="{{profile}}" class="corner-wrap">
+      <button class="corner-btn" bindtap="changeBg" hover-class="none">🖼 换背景</button>
+    </view>
+
+    <!-- 底部信息：头像(小,左下) + 名字(右) -->
+    <view class="profile-bottom">
+      <!-- 头像授权：点头像登录/换头像 -->
+      <button
+        class="avatar-btn"
+        open-type="chooseAvatar"
+        bindchooseavatar="onChooseAvatar"
+        hover-class="none"
+      >
+        <image
+          wx:if="{{profile && profile.avatarUrl}}"
+          class="avatar"
+          src="{{profile.avatarUrl}}"
+          mode="aspectFill"
+        ></image>
+        <view wx:else class="avatar avatar-txt">{{profile && profile.nickName ? profile.nickName[0] : '登'}}</view>
+      </button>
+
+      <view class="profile-info">
+        <block wx:if="{{profile && !editNick}}">
+          <view class="nick" bindtap="startEditNick">{{profile.nickName || '微信用户'}}</view>
+          <view class="desc" bindtap="editDesc">{{profile.desc || '说说什么吧'}}</view>
+        </block>
+        <block wx:else>
+          <view wx:if="{{!profile}}" class="sub">未登录 · 点头像并填昵称即可登录</view>
+          <view class="nick-edit">
+            <input
+              type="nickname"
+              class="nick-input"
+              value="{{nickValue}}"
+              bindinput="onNickInput"
+              placeholder="请输入昵称"
+              placeholder-class="nick-placeholder"
+            />
+            <button class="nick-save" size="mini" bindtap="saveNick">保存</button>
+          </view>
+        </block>
+      </view>
+    </view>
+  </view>
+
+  <!-- 紧贴资料卡下方：我的 喜欢 / 收藏 / 浏览 -->
+  <view wx:if="{{isLogin}}" class="stat-bar">
+    <view class="stat-item link" data-type="like" bindtap="goCollect">
+      <text class="stat-num">{{stat.likeSum}}</text>
+      <text class="stat-label">我的喜欢</text>
+    </view>
+    <view class="stat-item link" data-type="fav" bindtap="goCollect">
+      <text class="stat-num">{{stat.favSum}}</text>
+      <text class="stat-label">我的收藏</text>
+    </view>
+    <view class="stat-item">
+      <text class="stat-num">{{stat.viewSum}}</text>
+      <text class="stat-label">浏览</text>
+    </view>
+  </view>
+
+  <!-- 我的照片相册：独立上传，与帖子分开 -->
+  <view class="wall-card">
+    <view class="wall-head">
+      <view class="wall-title">我的照片（相册）</view>
+      <button wx:if="{{profile}}" class="wall-upload" size="mini" bindtap="chooseUploadPhoto" hover-class="none">＋ 上传照片</button>
+    </view>
+    <view class="photo-grid">
+      <image
+        wx:for="{{wall}}"
+        wx:key="_id"
+        class="grid-img"
+        src="{{item.url}}"
+        mode="aspectFill"
+        lazy-load
+        data-id="{{item._id}}"
+        data-url="{{item.url}}"
+        bindtap="previewWall"
+        bindlongpress="onWallDelete"
+      ></image>
+      <view wx:if="{{profile}}" class="add-cell" bindtap="chooseUploadPhoto" hover-class="none">
+        <text class="add-plus">＋</text>
+      </view>
+    </view>
+    <view wx:if="{{!wall.length}}" class="wall-empty">
+      {{profile ? '相册还是空的，点上面或 + 上传照片吧' : '登录后可上传我的照片'}}
+    </view>
+  </view>
+
+  <!-- 我的帖子 -->
+  <view class="my-title" wx:if="{{myPosts.length}}">我的帖子</view>
+  <block wx:for="{{myPosts}}" wx:key="_id">
+    <view class="card">
+      <view class="card-head">
+        <view wx:if="{{item.avatarUrl}}" class="card-avatar-wrap">
+          <image class="card-avatar" src="{{item.avatarUrl}}" mode="aspectFill"></image>
+        </view>
+        <view wx:else class="card-avatar card-avatar-txt">{{item.nickName ? item.nickName[0] : '微'}}</view>
+        <view class="card-user">
+          <view class="card-nickname">{{item.nickName || '微信用户'}}</view>
+          <view wx:if="{{item.region}}" class="card-region">{{item.region}}</view>
+        </view>
+        <!-- 删除该帖子 -->
+        <view class="post-del" data-id="{{item._id}}" bindtap="onDeletePost">🗑</view>
+      </view>
+
+      <view wx:if="{{item.content}}" class="card-content">{{item.content}}</view>
+
+      <view wx:if="{{item.images && item.images.length}}" class="photo-grid">
+        <image
+          wx:for="{{item.images}}"
+          wx:for-item="img"
+          wx:key="*this"
+          class="grid-img {{item.images.length === 1 ? 'single' : ''}}"
+          src="{{img}}"
+          mode="{{item.images.length === 1 ? 'widthFix' : 'aspectFill'}}"
+          lazy-load
+          data-url="{{img}}"
+          data-id="{{item._id}}"
+          bindtap="preview"
+        ></image>
+      </view>
+
+      <view class="action-bar">
+        <button class="action-item like {{item.liked ? 'on' : ''}}" data-id="{{item._id}}" bindtap="onLike" hover-class="none">
+          <text class="action-ic">{{item.liked ? '❤' : '♡'}}</text><text>{{item.likeCount}}</text>
+        </button>
+        <button class="action-item {{item.faved ? 'on' : ''}}" data-id="{{item._id}}" bindtap="onFav" hover-class="none">
+          <text class="action-ic">{{item.faved ? '★' : '☆'}}</text><text>{{item.favCount}}</text>
+        </button>
+        <button class="action-item" data-id="{{item._id}}" open-type="share" bindtap="onShare" hover-class="none">
+          <text class="action-ic">↗</text><text>{{item.shareCount}}</text>
+        </button>
+      </view>
+
+      <view class="card-foot">{{item.addDate}}</view>
+    </view>
+  </block>
+
+  <view wx:if="{{!myPosts.length}}" class="empty">
+    {{profile ? '还没有发过帖子，去「社区」右下角发帖吧' : '登录后可查看并发布我的帖子'}}
+  </view>
+</view>

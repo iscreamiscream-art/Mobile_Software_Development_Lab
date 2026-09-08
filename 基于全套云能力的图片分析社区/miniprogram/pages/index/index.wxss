@@ -1,0 +1,35 @@
+/* 可拖动发帖按钮(改为拖动，按住超过阈值不响应) */
+.float-btn {
+  position: fixed;
+  z-index: 999;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 88px;
+  height: 88px;
+  border-radius: 50%;
+  background: #1296db;
+  color: #fff;
+  box-shadow: 0 8rpx 20rpx rgba(18, 150, 219, 0.45);
+  /* 保证触摸响应灵敏 */
+  box-sizing: border-box;
+}
+.float-btn::before {
+  /* 增大热区便于抓取，但视觉仍小 */
+  content: '';
+  position: absolute;
+  top: -10px;
+  left: -10px;
+  right: -10px;
+  bottom: -10px;
+}
+.float-plus {
+  position: relative;
+  font-size: 40px;
+  line-height: 1;
+  font-weight: 300;
+}
+
+.card-avatar-wrap {
+  flex-shrink: 0;
+}

@@ -1,0 +1,107 @@
+<view class="container">
+  <!-- 帖子列表 -->
+  <block wx:if="{{posts.length}}">
+    <view class="card" wx:for="{{posts}}" wx:key="_id">
+      <!-- 作者条：点头像去 TA 主页 -->
+      <view class="card-head">
+        <navigator
+          class="card-avatar-wrap"
+          url="/pages/homepage/homepage?id={{item._openid}}"
+          hover-class="none"
+        >
+          <image
+            wx:if="{{item.avatarUrl}}"
+            class="card-avatar"
+            src="{{item.avatarUrl}}"
+            mode="aspectFill"
+          ></image>
+          <view wx:else class="card-avatar card-avatar-txt">{{item.nickName ? item.nickName[0] : '微'}}</view>
+        </navigator>
+        <view class="card-user">
+          <view class="card-nickname">{{item.nickName || '微信用户'}}</view>
+          <view wx:if="{{item.region}}" class="card-region">{{item.region}}</view>
+        </view>
+      </view>
+
+      <!-- 帖子正文 -->
+      <view wx:if="{{item.content}}" class="card-content">{{item.content}}</view>
+
+      <!-- 图片九宫格 -->
+      <view wx:if="{{item.images && item.images.length}}" class="photo-grid">
+        <image
+          wx:for="{{item.images}}"
+          wx:for-item="img"
+          wx:key="*this"
+          class="grid-img {{item.images.length === 1 ? 'single' : ''}}"
+          src="{{img}}"
+          mode="{{item.images.length === 1 ? 'widthFix' : 'aspectFill'}}"
+          lazy-load
+          data-url="{{img}}"
+          data-id="{{item._id}}"
+          bindtap="preview"
+        ></image>
+      </view>
+
+      <!-- 操作条：点赞游客也可；收藏/分享需登录 -->
+      <view class="action-bar">
+        <button
+          class="action-item like {{item.liked ? 'on' : ''}}"
+          data-id="{{item._id}}"
+          bindtap="onLike"
+          hover-class="none"
+        >
+          <text class="action-ic">{{item.liked ? '❤' : '♡'}}</text>
+          <text>{{item.likeCount}}</text>
+        </button>
+        <button
+          class="action-item {{item.faved ? 'on' : ''}}"
+          data-id="{{item._id}}"
+          bindtap="onFav"
+          hover-class="none"
+        >
+          <text class="action-ic">{{item.faved ? '★' : '☆'}}</text>
+          <text>{{item.favCount}}</text>
+        </button>
+        <!-- 登录态：可真正分享 -->
+        <button
+          wx:if="{{isLogin}}"
+          class="action-item"
+          data-id="{{item._id}}"
+          open-type="share"
+          bindtap="onShare"
+          hover-class="none"
+        >
+          <text class="action-ic">↗</text>
+          <text>{{item.shareCount}}</text>
+        </button>
+        <!-- 游客态：点击提示登录 -->
+        <button
+          wx:else
+          class="action-item"
+          data-id="{{item._id}}"
+          bindtap="onShare"
+          hover-class="none"
+        >
+          <text class="action-ic">↗</text>
+          <text>{{item.shareCount}}</text>
+        </button>
+      </view>
+
+      <view class="card-foot">{{item.addDate}}</view>
+    </view>
+  </block>
+
+  <view wx:else class="empty">还没有帖子，点右下角发第一帖吧</view>
+
+  <!-- 可拖动发帖按钮：catch 绑定拖动，短按进入发帖 -->
+  <view
+    class="float-btn"
+    style="left: {{btnLeft}}px; top: {{btnTop}}px;"
+    bindtouchstart="onBtnStart"
+    catchtouchmove="onBtnMove"
+    bindtouchend="onBtnEnd"
+    bindtouchcancel="onBtnEnd"
+  >
+    <text class="float-plus">＋</text>
+  </view>
+</view>

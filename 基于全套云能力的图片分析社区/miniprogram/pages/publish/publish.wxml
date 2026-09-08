@@ -1,0 +1,37 @@
+<view class="page">
+  <!-- 顶部发布者信息 -->
+  <view class="publish-head">
+    <image wx:if="{{profile && profile.avatarUrl}}" class="p-avatar" src="{{profile.avatarUrl}}" mode="aspectFill"></image>
+    <view wx:else class="p-avatar p-avatar-txt">{{profile && profile.nickName ? profile.nickName[0] : '登'}}</view>
+    <view class="p-name">{{profile ? (profile.nickName || '微信用户') : '未登录'}}</view>
+    <text wx:if="{{!profile}}" class="p-login" bindtap="goLogin">去登录</text>
+  </view>
+
+  <!-- 正文输入 -->
+  <textarea
+    class="content-input"
+    value="{{content}}"
+    bindinput="onContent"
+    placeholder="这一刻的想法...（可同时上传图片）"
+    placeholder-class="content-ph"
+    maxlength="500"
+    auto-height
+  ></textarea>
+
+  <!-- 图片选择九宫格 -->
+  <view class="img-box">
+    <view class="img-cell" wx:for="{{images}}" wx:key="*this">
+      <image class="sel-img" src="{{item}}" mode="aspectFill" data-url="{{item}}" bindtap="previewImg"></image>
+      <view class="img-del" data-idx="{{index}}" bindtap="removeImage">×</view>
+    </view>
+    <view wx:if="{{images.length < 9}}" class="img-cell img-add" bindtap="chooseImages">
+      <text class="add-plus">＋</text>
+    </view>
+  </view>
+  <view class="img-count" wx:if="{{images.length}}">已选 {{images.length}}/9 张</view>
+
+  <!-- 发布按钮 -->
+  <view class="submit-wrap">
+    <button class="primary-btn submit-btn" bindtap="submit" loading="{{submitting}}">发 布</button>
+  </view>
+</view>

@@ -1,0 +1,62 @@
+<view class="container">
+  <!-- 顶部用户资料 -->
+  <view class="profile" wx:if="{{user}}">
+    <image wx:if="{{user.avatarUrl}}" class="profile-avatar" src="{{user.avatarUrl}}" mode="aspectFill"></image>
+    <view wx:else class="profile-avatar profile-avatar-txt">{{user.nickName[0]}}</view>
+    <view class="profile-nickname">{{user.nickName}}</view>
+    <view wx:if="{{user.region}}" class="profile-region">{{user.region}}</view>
+    <view class="profile-count">TA 共发 {{posts.length}} 条动态</view>
+  </view>
+
+  <!-- TA 的帖子 -->
+  <block wx:for="{{posts}}" wx:key="_id">
+    <view class="card">
+      <view class="card-head">
+        <view wx:if="{{item.avatarUrl}}" class="card-avatar-wrap">
+          <image class="card-avatar" src="{{item.avatarUrl}}" mode="aspectFill"></image>
+        </view>
+        <view wx:else class="card-avatar card-avatar-txt">{{item.nickName ? item.nickName[0] : '微'}}</view>
+        <view class="card-user">
+          <view class="card-nickname">{{item.nickName || '微信用户'}}</view>
+          <view wx:if="{{item.region}}" class="card-region">{{item.region}}</view>
+        </view>
+      </view>
+
+      <view wx:if="{{item.content}}" class="card-content">{{item.content}}</view>
+
+      <view wx:if="{{item.images && item.images.length}}" class="photo-grid">
+        <image
+          wx:for="{{item.images}}"
+          wx:for-item="img"
+          wx:key="*this"
+          class="grid-img {{item.images.length === 1 ? 'single' : ''}}"
+          src="{{img}}"
+          mode="{{item.images.length === 1 ? 'widthFix' : 'aspectFill'}}"
+          lazy-load
+          data-url="{{img}}"
+          data-id="{{item._id}}"
+          bindtap="preview"
+        ></image>
+      </view>
+
+      <view class="action-bar">
+        <button class="action-item like {{item.liked ? 'on' : ''}}" data-id="{{item._id}}" bindtap="onLike" hover-class="none">
+          <text class="action-ic">{{item.liked ? '❤' : '♡'}}</text><text>{{item.likeCount}}</text>
+        </button>
+        <button class="action-item {{item.faved ? 'on' : ''}}" data-id="{{item._id}}" bindtap="onFav" hover-class="none">
+          <text class="action-ic">{{item.faved ? '★' : '☆'}}</text><text>{{item.favCount}}</text>
+        </button>
+        <button wx:if="{{isLogin}}" class="action-item" data-id="{{item._id}}" open-type="share" bindtap="onShare" hover-class="none">
+          <text class="action-ic">↗</text><text>{{item.shareCount}}</text>
+        </button>
+        <button wx:else class="action-item" data-id="{{item._id}}" bindtap="onShare" hover-class="none">
+          <text class="action-ic">↗</text><text>{{item.shareCount}}</text>
+        </button>
+      </view>
+
+      <view class="card-foot">{{item.addDate}}</view>
+    </view>
+  </block>
+
+  <view wx:if="{{loaded && !posts.length}}" class="empty">TA 还没有发布过动态</view>
+</view>

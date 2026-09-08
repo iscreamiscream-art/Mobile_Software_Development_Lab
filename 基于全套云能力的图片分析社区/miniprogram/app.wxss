@@ -1,0 +1,150 @@
+/* ===== 全局公共样式 ===== */
+page {
+  background: #f2f3f5;
+  color: #333;
+  font-size: 28rpx;
+}
+
+.container {
+  padding-bottom: 160rpx; /* 给底部 tabBar 留空间 */
+}
+
+/* ===== 通用卡片 ===== */
+.card {
+  width: 690rpx;
+  margin: 20rpx auto;
+  border-radius: 20rpx;
+  background: #fff;
+  overflow: hidden;
+  box-shadow: 0 4rpx 16rpx rgba(0, 0, 0, 0.05);
+}
+
+/* 卡片作者条 */
+.card-head {
+  display: flex;
+  align-items: center;
+  padding: 20rpx 24rpx;
+}
+.card-avatar {
+  width: 76rpx;
+  height: 76rpx;
+  border-radius: 50%;
+  background: #e5e6eb;
+  flex-shrink: 0;
+}
+.card-avatar-txt {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #1296db;
+  font-size: 32rpx;
+  font-weight: 600;
+}
+.card-user {
+  flex: 1;
+  min-width: 0;
+  margin-left: 18rpx;
+}
+.card-nickname {
+  font-size: 30rpx;
+  font-weight: 600;
+  color: #333;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}
+.card-region {
+  margin-top: 4rpx;
+  font-size: 24rpx;
+  color: #999;
+}
+
+/* 帖子正文 */
+.card-content {
+  padding: 0 24rpx 16rpx;
+  font-size: 30rpx;
+  line-height: 1.6;
+  word-break: break-all;
+}
+
+/* 正文图片九宫格 */
+.photo-grid {
+  display: flex;
+  flex-wrap: wrap;
+  padding: 0 24rpx;
+}
+.grid-img {
+  width: calc((100% - 32rpx) / 3);
+  height: 210rpx;
+  margin: 0 16rpx 16rpx 0;
+  border-radius: 12rpx;
+  background: #e5e6eb;
+}
+.grid-img:nth-child(3n) {
+  margin-right: 0;
+}
+/* 单图较宽 */
+.grid-img.single {
+  width: 100%;
+  height: auto;
+}
+
+/* 卡片页脚：时间 */
+.card-foot {
+  padding: 12rpx 24rpx;
+  font-size: 24rpx;
+  color: #bbb;
+}
+
+/* ===== 底部操作条：点赞/收藏/分享 ===== */
+.action-bar {
+  display: flex;
+  align-items: center;
+  padding: 8rpx 24rpx 20rpx;
+}
+.action-item {
+  display: flex;
+  align-items: center;
+  margin-right: 48rpx;
+  padding: 0;
+  line-height: 1;
+  font-size: 26rpx;
+  color: #666;
+  background: transparent;
+}
+.action-item::after {
+  border: none;
+}
+.action-item.on {
+  color: #1296db;
+}
+.action-item.on .action-ic {
+  transform: scale(1.15);
+}
+.action-ic {
+  font-size: 34rpx;
+  margin-right: 8rpx;
+  transition: transform 0.15s;
+}
+.action-item.like.on {
+  color: #e64340;
+}
+
+/* ===== 空状态 / 提示 ===== */
+.empty {
+  padding: 160rpx 60rpx;
+  text-align: center;
+  color: #999;
+  font-size: 28rpx;
+}
+
+/* 通用按钮 */
+.primary-btn {
+  background: #1296db;
+  color: #fff;
+  border-radius: 999rpx;
+  font-size: 30rpx;
+}
+.primary-btn::after {
+  border: none;
+}

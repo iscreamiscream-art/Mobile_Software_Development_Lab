@@ -1,0 +1,45 @@
+<view class="page">
+  <!-- 一键清理 -->
+  <view class="toolbar" wx:if="{{list.length}}">
+    <text class="toolbar-count">共 {{list.length}} 条</text>
+    <button class="clear-btn" bindtap="onClear">一键清理</button>
+  </view>
+
+  <!-- 列表：点击查看，长按移除 -->
+  <view class="card" wx:for="{{list}}" wx:key="_id"
+    data-id="{{item._id}}"
+    bindtap="goDetail"
+    bindlongpress="onLongPress"
+  >
+    <view class="card-head">
+      <image wx:if="{{item.avatarUrl}}" class="card-avatar" src="{{item.avatarUrl}}" mode="aspectFill"></image>
+      <view wx:else class="card-avatar card-avatar-txt">{{item.nickName ? item.nickName[0] : '微'}}</view>
+      <view class="card-user">
+        <view class="card-nickname">{{item.nickName || '微信用户'}}</view>
+      </view>
+    </view>
+
+    <view wx:if="{{item.content}}" class="card-content">{{item.content}}</view>
+
+    <view wx:if="{{item.images && item.images.length}}" class="photo-grid">
+      <image
+        wx:for="{{item.images}}"
+        wx:for-item="img"
+        wx:for-index="imgIdx"
+        wx:key="*this"
+        class="grid-img {{item.images.length === 1 ? 'single' : ''}}"
+        src="{{img}}"
+        mode="{{item.images.length === 1 ? 'widthFix' : 'aspectFill'}}"
+        data-id="{{item._id}}"
+        data-url="{{img}}"
+        catchtap="preview"
+      ></image>
+    </view>
+
+    <view class="card-foot">
+      <text>赞 {{item.likedBy.length}} · 藏 {{item.favedBy.length}} · {{item.addDate}}</text>
+    </view>
+  </view>
+
+  <view wx:if="{{loaded && !list.length}}" class="empty">这里空空如也</view>
+</view>

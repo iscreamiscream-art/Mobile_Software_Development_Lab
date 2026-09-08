@@ -1,0 +1,56 @@
+.page {
+  padding: 24rpx;
+}
+
+.card-head {
+  background: #fff;
+  border-radius: 16rpx;
+  padding: 20rpx 24rpx;
+}
+.card-avatar-wrap {
+  flex-shrink: 0;
+}
+
+.detail-content {
+  margin-top: 20rpx;
+  padding: 24rpx;
+  background: #fff;
+  border-radius: 16rpx;
+  font-size: 32rpx;
+  line-height: 1.7;
+  word-break: break-all;
+}
+
+.detail-photo {
+  margin-top: 20rpx;
+  display: flex;
+  flex-wrap: wrap;
+  background: #fff;
+  border-radius: 16rpx;
+  padding: 12rpx;
+}
+.d-img {
+  width: calc(100% - 4rpx);
+  margin: 8rpx auto;
+  border-radius: 8rpx;
+  background: #e5e6eb;
+}
+
+.detail-time {
+  margin: 20rpx 8rpx 0;
+  font-size: 24rpx;
+  color: #999;
+}
+
+.detail-actions {
+  background: #fff;
+  margin-top: 20rpx;
+  border-radius: 16rpx;
+}
+
+.detail-btns {
+  margin-top: 24rpx;
+}
+.detail-btns button {
+  width: 100%;
+}

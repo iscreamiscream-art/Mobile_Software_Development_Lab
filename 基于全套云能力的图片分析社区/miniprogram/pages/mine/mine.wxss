@@ -1,0 +1,250 @@
+/* 顶部资料卡 */
+.profile {
+  position: relative;
+  height: 420rpx;
+  box-sizing: border-box;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  background: linear-gradient(160deg, #1296db, #1fb6ff);
+}
+
+/* 背景图(可上传) */
+.profile-bg {
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+}
+.profile-bg-mask {
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(to bottom, rgba(0, 0, 0, 0.15), rgba(0, 0, 0, 0.55));
+}
+
+/* 右上角：换背景 + 退出登录 */
+.corner-wrap {
+  position: absolute;
+  top: 20rpx;
+  right: 20rpx;
+  display: flex;
+}
+.corner-btn {
+  margin: 0 0 0 14rpx;
+  padding: 0 22rpx;
+  height: 60rpx;
+  line-height: 60rpx;
+  font-size: 22rpx;
+  color: #fff;
+  background: rgba(0, 0, 0, 0.3);
+  border-radius: 999rpx;
+}
+.corner-btn::after {
+  border: none;
+}
+
+/* 底部信息：头像(小,左下) + 名字(右) */
+.profile-bottom {
+  position: relative;
+  display: flex;
+  align-items: flex-end;
+  padding: 0 32rpx 40rpx;
+}
+.avatar-btn {
+  width: auto;
+  height: auto;
+  margin: 0;
+  padding: 0;
+  background: transparent;
+  border-radius: 50%;
+  line-height: 1;
+  flex-shrink: 0;
+}
+.avatar-btn::after {
+  border: none;
+}
+.avatar {
+  width: 120rpx;
+  height: 120rpx;
+  border-radius: 50%;
+  border: 4rpx solid rgba(255, 255, 255, 0.75);
+  box-sizing: border-box;
+  overflow: hidden;
+  background: #fff;
+}
+.avatar-txt {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(0, 0, 0, 0.2);
+  color: #fff;
+  font-size: 46rpx;
+  font-weight: 600;
+}
+
+.profile-info {
+  flex: 1;
+  min-width: 0;
+  margin-left: 24rpx;
+  padding-bottom: 8rpx;
+}
+.nick {
+  color: #fff;
+  font-size: 40rpx;
+  font-weight: 600;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}
+.sub {
+  color: rgba(255, 255, 255, 0.88);
+  font-size: 22rpx;
+  margin-top: 10rpx;
+}
+
+/* 昵称编辑 */
+.nick-edit {
+  display: flex;
+  align-items: center;
+  margin-top: 14rpx;
+}
+.nick-input {
+  width: 320rpx;
+  height: 64rpx;
+  padding: 0 16rpx;
+  background: #fff;
+  border-radius: 12rpx;
+  font-size: 28rpx;
+  color: #333;
+  box-sizing: border-box;
+}
+.nick-placeholder {
+  color: #bbb;
+}
+.nick-save {
+  margin-left: 12rpx;
+  background: #fff;
+  color: #1296db;
+}
+
+/* 紧贴资料卡下方：我的 喜欢/收藏/浏览 */
+.stat-bar {
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  background: #fff;
+  padding: 24rpx 0;
+}
+.stat-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  flex: 1;
+}
+.stat-num {
+  font-size: 38rpx;
+  font-weight: 600;
+  color: #333;
+}
+.stat-label {
+  font-size: 22rpx;
+  color: #999;
+  margin-top: 6rpx;
+}
+
+/* 照片墙卡片 */
+.wall-card {
+  width: 690rpx;
+  margin: 20rpx auto;
+  padding-bottom: 16rpx;
+  border-radius: 20rpx;
+  background: #fff;
+}
+.wall-head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 20rpx 24rpx 16rpx;
+}
+.wall-title {
+  font-size: 30rpx;
+  font-weight: 600;
+}
+.wall-upload {
+  margin: 0;
+  font-size: 24rpx;
+  color: #1296db;
+  background: rgba(18, 150, 219, 0.1);
+  border-radius: 999rpx;
+}
+.wall-upload::after {
+  border: none;
+}
+
+/* 相册添加照片格(尺寸与 grid-img 一致) */
+.add-cell {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: calc((100% - 32rpx) / 3);
+  height: 210rpx;
+  margin: 0 16rpx 16rpx 0;
+  border-radius: 12rpx;
+  background: #f7f9fb;
+  border: 2rpx dashed #cfd6dd;
+  box-sizing: border-box;
+}
+.add-cell:nth-child(3n) {
+  margin-right: 0;
+}
+.add-plus {
+  font-size: 60rpx;
+  color: #1296db;
+  font-weight: 300;
+}
+.wall-empty {
+  padding: 0 24rpx 16rpx;
+  font-size: 24rpx;
+  color: #999;
+}
+
+.my-title {
+  width: 690rpx;
+  margin: 24rpx auto 0;
+  font-size: 32rpx;
+  font-weight: 600;
+}
+
+.card-avatar-wrap {
+  flex-shrink: 0;
+}
+
+/* 个人简介(可编辑的一段话) */
+.desc {
+  color: rgba(255, 255, 255, 0.9);
+  font-size: 26rpx;
+  margin-top: 10rpx;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}
+
+/* 帖子删除键(右上角) */
+.post-del {
+  margin-left: auto;
+  flex-shrink: 0;
+  padding: 0 8rpx;
+  font-size: 34rpx;
+  color: #e64340;
+  line-height: 1;
+}
+
+/* 统计入口可点击 */
+.stat-item.link {
+  position: relative;
+}

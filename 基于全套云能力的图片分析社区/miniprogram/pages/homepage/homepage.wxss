@@ -1,0 +1,51 @@
+.container {
+  padding-bottom: 60rpx;
+}
+
+/* 顶部用户资料 */
+.profile {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 48rpx 24rpx 56rpx;
+  background: linear-gradient(160deg, #1296db, #1fb6ff);
+}
+.profile-avatar {
+  width: 150rpx;
+  height: 150rpx;
+  border-radius: 50%;
+  border: 4rpx solid rgba(255, 255, 255, 0.6);
+  overflow: hidden;
+}
+.profile-avatar-txt {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(255, 255, 255, 0.3);
+  color: #fff;
+  font-size: 56rpx;
+  font-weight: 600;
+}
+.profile-nickname {
+  margin-top: 20rpx;
+  font-size: 36rpx;
+  font-weight: 600;
+  color: #fff;
+}
+.profile-region {
+  margin-top: 8rpx;
+  font-size: 26rpx;
+  color: rgba(255, 255, 255, 0.9);
+}
+.profile-count {
+  margin-top: 16rpx;
+  padding: 6rpx 24rpx;
+  font-size: 24rpx;
+  color: #fff;
+  background: rgba(0, 0, 0, 0.18);
+  border-radius: 999rpx;
+}
+
+.card-avatar-wrap {
+  flex-shrink: 0;
+}
